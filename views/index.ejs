@@ -8,7 +8,7 @@
     <h1>近期新闻</h1>
     <ul>
       <% for(let i=0; i < List.length; i ++) { %>
-        <li><a href="127.0.0.1:3000/read?id=<%= i+1 %>"><%= List[i] %></a></a></li>
+        <li><a href="/read?id=<%= i+1 %>"><%= List[i] %></a></a></li>
       <% } %>
     </ul>
   </body>
