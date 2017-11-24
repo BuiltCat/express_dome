@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>新闻列表</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>近期新闻</h1>
+    <ul>
+      <% for(let i=0; i < List.length; i ++) { %>
+        <li><a href="127.0.0.1:3000/read?id=<%= i+1 %>"><%= List[i] %></a></a></li>
+      <% } %>
+    </ul>
+  </body>
+  </script>
+</html>
