@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const pageServicse = require('../../servicse/page_servicse');
+const apiRes = require('../../utils/api_response');
 const HTTPRequestParamError = require('../../errors/http_request_param_error');
 const ResourceNotFound = require('../../errors/resource_not_found_error');
 
 /* 获取所有文章列表. */
 router.get('/', (req, res, next) => {
     (async () => {
-        // res.locals.List =
         const List = await pageServicse.getList();
         if (List.length !== 0){
             return List;
@@ -15,18 +15,19 @@ router.get('/', (req, res, next) => {
             throw new ResourceNotFound('文章列表', 'null', '当前没有文章啊QAQ!');
         }
     })().then((r) => {
-        res.json(r);
+        res.data = r;
+        apiRes(req, res);
     }).catch((e) => {
         next(e);
     })
 })
 /* 通过id获取文章 */
-router.use('/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
     (async () => {
         if (req.params.id) {
             const page = await pageServicse.getPage(req.params.id);
             if (page) {
-                res.locals.page = page;
+                return page;
             } else {
                 throw new ResourceNotFound('id', req.params.id,'id不存在请检查一下');
             }
@@ -34,7 +35,8 @@ router.use('/:id', (req, res, next) => {
             throw new HTTPRequestParamError('id', '未输入id');
         }
     })().then((r) => {
-        res.render('read');
+        res.data = r;
+        apiRes(req, res);
     }).catch((e) => {
         next(e);
     })
@@ -54,7 +56,6 @@ router.post('/', (req, res, next) => {
         throw new HTTPRequestParamError('page', '不存在')
     }else{
         res.json(pageServicse.setPage(req.body));
-
     }
 })
 

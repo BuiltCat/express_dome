@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { pageSchema } = require('../config/Schema');
 
 const uri = `mongodb://localhost:27017/test`;
 
@@ -8,24 +9,6 @@ mongoose.connect(uri,{
 
 const db = mongoose.Connection;
 
-const pageSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    author: {
-        type: String,
-        required: true
-    },
-    page: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true
-    }
-});
 
 const pageModel = mongoose.model('page',pageSchema);
 

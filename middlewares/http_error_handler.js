@@ -8,7 +8,7 @@ function handler(options) {
             res.statusCode = err.httpstatusCode;
             res.json({
                 code: err.errCode,
-                msg: err.message,
+                msg: err.httpMsg,
             });
         }else{
             next(err);
