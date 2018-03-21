@@ -1,4 +1,4 @@
 module.exports = {
-    expireIn: 60000,
-    SECRET: 'cat'
-}
+  expireIn: 7200000,
+  SECRET: "cat"
+};

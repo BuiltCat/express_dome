@@ -5,7 +5,6 @@ const JwTConfig = require('../config/JWTConfig');
 function handler(options) {
     return function (req, res, next) {
         (async() => {
-            console.log(req.body);
             const { authorization } = req.body;
             if(!authorization||authorization.indexOf('Bearer') === -1){
                 throw new NoAuthError(null);

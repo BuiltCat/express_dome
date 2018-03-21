@@ -7,7 +7,7 @@ const {
     userSchema
 } = require('../config/Schema');
 
-const uri = `mongodb://localhost:27017/test`;
+const uri = `mongodb://localhost:27017/bilibili`;
 
 mongoose.connect(uri, {
     useMongoClient: true
